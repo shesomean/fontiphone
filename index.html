@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <input placeholder="Enter message" id="input">
+    <button class="confirm" onclick="Generate()">Generate</button>
+    <div id="output" style="visibility: hidden; font-size: 3em;"></div>
+    
+    <div style="background:yellow;padding:10px">
+        <img id="textScreenshot" src="" />
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+    <script>
+        function Generate() {
+            document.getElementById('output').innerHTML = document.getElementById('input').value ;
+            html2canvas(document.getElementById('output'), {
+                onrendered: function (canvas) {
+                    var screenshot = canvas.toDataURL('image/png');
+                    document.getElementById('textScreenshot').setAttribute('src', screenshot);
+                },
+            });
+        }
+    </script>
+</body>
+</html>
